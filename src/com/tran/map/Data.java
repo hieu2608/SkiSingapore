@@ -25,7 +25,8 @@ public class Data {
         }
         this.maxRows = getMaxRowsFromHeader(lines.get(0));
         this.maxColumns = getMaxColumnsFromHeader(lines.get(0));
-        this.heightMap = getMapData(lines.get(1));
+        lines.remove(0);
+        this.heightMap = getMapData(lines);
     }
 
     private int getMaxRowsFromHeader(String header) {
@@ -38,14 +39,13 @@ public class Data {
         return Integer.valueOf(parts[1]);
     }
 
-    private HashMap<AreaKey,Integer> getMapData(String content) {
-        String[] data = content.split("\\s+");
+    private HashMap<AreaKey,Integer> getMapData(List<String> content) {
+
         HashMap<AreaKey, Integer> map = new HashMap<AreaKey, Integer>();
-        int count = 0;
         for (int row = 0; row < this.maxRows; row++) {
+            String[] data = content.get(row).split("\\s+");
             for (int column = 0; column < this.maxColumns; column++) {
-                map.put(new AreaKey(row, column), Integer.valueOf(data[count]));
-                count++;
+                map.put(new AreaKey(row, column), Integer.valueOf(data[column]));
             }
         }
         return map;

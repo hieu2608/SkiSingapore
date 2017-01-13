@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class DataTest {
     @Test
-    public void testData() {
+    public void testSampleData() {
         Data mapData = new Data(new File("").getAbsolutePath().concat("/data/test.txt"));
         assertEquals(mapData.getMaxRows(), 4);
         assertEquals(mapData.getMaxColumns(), 4);
@@ -23,5 +23,14 @@ public class DataTest {
                 System.out.println("i = " + i + ", j = " + j + ", height = " + height);
             }
         }
+    }
+
+    @Test
+    public void testActualData() {
+        Data mapData = new Data(new File("").getAbsolutePath().concat("/data/map.txt"));
+        assertEquals(mapData.getMaxRows(), 1000);
+        assertEquals(mapData.getMaxColumns(), 1000);
+        assertEquals(mapData.getHeight(0, 0), 50);
+        assertEquals(mapData.getHeight(999, 999), 1460);
     }
 }

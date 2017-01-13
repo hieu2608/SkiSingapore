@@ -1,7 +1,11 @@
 import com.tran.area.Area;
 import com.tran.area.AreaKey;
+import com.tran.map.Data;
 import com.tran.map.SkiMap;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,6 +16,12 @@ import static org.junit.Assert.assertTrue;
  * @since: 12/1/17.
  */
 public class SkiMapTest {
+    private Data dataMap;
+    @Before
+    protected void setUp() {
+        dataMap = new Data(new File("").getAbsolutePath().concat("/data/test.txt"));
+    }
+
     @Test
     public void testSingleton() {
         SkiMap map = SkiMap.getInstance();
@@ -22,10 +32,10 @@ public class SkiMapTest {
     public void testHashMap() {
         SkiMap map = SkiMap.getInstance();
 
-        map.put(new Area(1, 2));
+        map.put(new Area(1, 2, dataMap));
         assertTrue(map.containsKey(new AreaKey(1, 2)));
 
-        Area area = new Area(2, 4);
+        Area area = new Area(2, 4, dataMap);
         assertFalse(map.containsKey(area.getKey()));
         map.put(area);
         assertTrue(map.containsKey(new AreaKey(2, 4)));
