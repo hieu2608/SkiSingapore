@@ -73,7 +73,7 @@ public class Area {
 
     private Area computeBestNeighbor() {
         SkiMap skiMap = SkiMap.getInstance();
-        List<Area> neighborArea = this.downhillNeighbor.stream()
+        List<Area> neighborArea = this.downhillNeighbor.parallelStream()
                                         .map(key -> {
                                             if (skiMap.containsKey(key)) {
                                                 return skiMap.getArea(key);

@@ -29,7 +29,7 @@ public class SkiMap {
 
     public void populateMap(Data dataMap) {
         List<AreaKey> dataKeys = dataMap.getKeys();
-        dataKeys.stream()
+        dataKeys.parallelStream()
                 .forEach(key -> {
                     if (!map.containsKey(key)) {
                         map.putIfAbsent(key, new Area(key, dataMap));
