@@ -59,7 +59,7 @@ public class SkiMap {
         if (!map.containsKey(area.getKey())) {
             map.put(area.getKey(), area);
         }
-        return map.get(area.getKey());
+        return area;
     }
 
     public void printPath(Area area) {

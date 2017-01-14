@@ -55,6 +55,13 @@ public class SkiMapTest {
         assertEquals(5, startArea.getTotalPath());
         assertEquals(8, startArea.getTotalDrop());
         assertEquals(new AreaKey(2, 1), startArea.getKey());
+        map.printPath(startArea);
+
+        Area secondBest = map.getArea(new AreaKey(1, 0));
+        assertEquals(8, secondBest.getHeight());
+        assertEquals(5, secondBest.getTotalPath());
+        assertEquals(7, secondBest.getTotalDrop());
+        map.printPath(secondBest);
     }
 
     @Test
