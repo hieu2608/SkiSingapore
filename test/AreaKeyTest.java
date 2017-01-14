@@ -26,6 +26,16 @@ public class AreaKeyTest {
     }
 
     @Test
+    public void testPosition() {
+        AreaKey keyA = new AreaKey(3, 4);
+        assertEquals(keyA.getPosX(), 3);
+        assertEquals(keyA.getPosY(), 4);
+
+        AreaKey keyB = new AreaKey(keyA.getPosX(), keyA.getPosY());
+        assertEquals(keyA, keyB);
+    }
+
+    @Test
     public void testHashMap() {
         HashMap<AreaKey, String> map = new HashMap<AreaKey, String>();
         map.put(new AreaKey(1, 2), "Object A");

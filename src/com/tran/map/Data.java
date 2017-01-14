@@ -2,8 +2,10 @@ package com.tran.map;
 
 import com.tran.area.AreaKey;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Data {
     public Data(String fileName) {
         List<String> lines = null;
         try {
-            lines = Files.readAllLines(Paths.get(fileName));
+            lines = Files.readAllLines(Paths.get(new File("").getAbsolutePath().concat(fileName)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,7 +47,7 @@ public class Data {
         for (int row = 0; row < this.maxRows; row++) {
             String[] data = content.get(row).split("\\s+");
             for (int column = 0; column < this.maxColumns; column++) {
-                map.put(new AreaKey(row, column), Integer.valueOf(data[column]));
+                map.put(new AreaKey(column, row), Integer.valueOf(data[column]));
             }
         }
         return map;
@@ -65,5 +67,9 @@ public class Data {
 
     public int getHeight(AreaKey key) {
         return heightMap.get(key);
+    }
+
+    public List<AreaKey> getKeys() {
+        return new ArrayList<AreaKey>(heightMap.keySet());
     }
 }

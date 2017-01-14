@@ -1,7 +1,9 @@
+import com.tran.area.AreaKey;
 import com.tran.map.Data;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,10 +14,12 @@ import static org.junit.Assert.assertEquals;
 public class DataTest {
     @Test
     public void testSampleData() {
-        Data mapData = new Data(new File("").getAbsolutePath().concat("/data/test.txt"));
+        Data mapData = new Data("/data/test.txt");
         assertEquals(mapData.getMaxRows(), 4);
         assertEquals(mapData.getMaxColumns(), 4);
         assertEquals(mapData.getHeight(0, 0), 4);
+        assertEquals(mapData.getHeight(3, 0), 3);
+        assertEquals(mapData.getHeight(0, 3), 4);
         assertEquals(mapData.getHeight(3, 3), 6);
         for (int i = 0; i < mapData.getMaxRows(); i++) {
             for (int j = 0; j < mapData.getMaxColumns(); j++) {
@@ -27,10 +31,17 @@ public class DataTest {
 
     @Test
     public void testActualData() {
-        Data mapData = new Data(new File("").getAbsolutePath().concat("/data/map.txt"));
+        Data mapData = new Data("/data/map.txt");
         assertEquals(mapData.getMaxRows(), 1000);
         assertEquals(mapData.getMaxColumns(), 1000);
         assertEquals(mapData.getHeight(0, 0), 50);
         assertEquals(mapData.getHeight(999, 999), 1460);
+    }
+
+    @Test
+    public void testKeyList() {
+        Data mapData = new Data("/data/test.txt");
+        List<AreaKey> keyList = mapData.getKeys();
+        assertEquals(16, keyList.size());
     }
 }

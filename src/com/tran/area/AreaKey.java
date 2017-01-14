@@ -16,6 +16,14 @@ public class AreaKey {
         hash = sum * (sum + 1) / 2 + posX;
     }
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
     @Override
     public int hashCode() {
         return hash;
